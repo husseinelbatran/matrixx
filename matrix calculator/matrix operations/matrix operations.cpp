@@ -1,7 +1,10 @@
 #include<iostream>
 using namespace std;
 int main()
-{   //just to  see the result 
+      
+{
+    int lock = 0;
+    //just to  see the result 
     int woqmpd;
     //operation variables
     string operation;
@@ -86,10 +89,17 @@ int main()
     //plus
     if (operation == "1")
     {
-        for (int result_row = 0;result_row < first_matrix_rows;result_row++)
+        if (first_matrix_rows!=second_matrix_rows || first_matrix_columns != second_matrix_columns)
         {
-            for (int result_column = 0;result_column < first_matrix_columns; result_column++) {
-                result_matrix[result_row][result_column] = first_matrix[result_row][result_column] + second_matrix[result_row][result_column];
+            cout << "error!\nthose matris canot be added to gether\n";
+            lock++;
+        }
+        else {
+            for (int result_row = 0;result_row < first_matrix_rows;result_row++)
+            {
+                for (int result_column = 0;result_column < first_matrix_columns; result_column++) {
+                    result_matrix[result_row][result_column] = first_matrix[result_row][result_column] + second_matrix[result_row][result_column];
+                }
             }
         }
     }
@@ -112,16 +122,12 @@ int main()
         {
             for (int result_column = 0;result_column < first_matrix_columns; result_column++) {
                
-              //  result_matrix[result_row][result_column] += first_matrix[result_row][result_column]*first_matrix[result_column][result_row];
+               result_matrix[result_row][result_column] += first_matrix[result_row][result_column]*first_matrix[result_column][result_row];
             }
         }
-        for (int result_column = 0;result_column < first_matrix_columns; result_column++) {
-            {
-            for (int result_row = 0;result_row < first_matrix_rows;result_row++)
-            { 
-                // result_matrix[result_row][result_column] += first_matrix[result_row][result_column]*first_matrix[result_column][result_row];
-            }
-        }
+         
+
+        
 
     }
     //division
@@ -136,14 +142,15 @@ int main()
     }
 
     // print the result 
-    for (int i = 0;i < first_matrix_rows;i++)
-    {
-        for (int t = 0;t < first_matrix_columns;t++) {
-            cout << " " << result_matrix[i][t] << " ";
+    if (lock == 0) {
+        for (int i = 0;i < first_matrix_rows;i++)
+        {
+            for (int t = 0;t < first_matrix_columns;t++) {
+                cout << " " << result_matrix[i][t] << " ";
+            }
+            cout << endl;
         }
-        cout << endl;
     }
-
     //just to see the result 
     cin>>woqmpd;
     return 0;
