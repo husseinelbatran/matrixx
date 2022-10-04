@@ -1,13 +1,9 @@
 #include<iostream>
-#include<iomanip>
-
 using namespace std;
 int main()
-
 {
     int bigger = 0;
     int lock = 0;
-
     //operation variables
     string operation;
     // variables of first matrix
@@ -22,7 +18,6 @@ int main()
     int result_matrix_rows = 0;
     int result_matrix_columns = 0;
     int result_matrix[100][100] = { 0 };
-
     //first matrix input
     cout << "write the first matrix\n";
     cout << "write the number rows : ";
@@ -33,9 +28,7 @@ int main()
     cout << endl;
     if (first_matrix_rows == first_matrix_columns && first_matrix_columns != 0)
         cout << "this matrix is square matrix\n";
-
     cout << "your matrix has " << first_matrix_rows << " rows and " << first_matrix_columns << " columns\n";
-
     for (int column_count = 0; column_count < first_matrix_columns; column_count++)
     {
         for (int row_count = 0; row_count < first_matrix_rows; row_count++)
@@ -54,8 +47,6 @@ int main()
         }
         cout << endl;
     }
-
-
     //second matrix input
     cout << "now the second matrix\n";
     cout << "write the number rows : ";
@@ -132,7 +123,6 @@ int main()
                     }
                 }
             }
-
             //  first_matrix_rows=first_matrix_columns;
             first_matrix_columns = second_matrix_columns;
         }
@@ -152,8 +142,6 @@ int main()
                     bigger = result_matrix[i][t];
             }
         }
-
-
         for (int i = 0;i < first_matrix_rows;i++)
         {
             cout << " ";
@@ -165,5 +153,4 @@ int main()
         }
     }
     return 0;
-
 }
