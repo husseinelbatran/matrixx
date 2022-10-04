@@ -1,23 +1,26 @@
 #include<iostream>
+#include <cstdlib>
+
 using namespace std;
 int main()
-      
+
 {
     int lock = 0;
-    //just to  see the result 
-    int woqmpd;
+    
     //operation variables
     string operation;
     // variables of first matrix
     int first_matrix_rows = 0;
     int first_matrix_columns = 0;
-    int first_matrix[100][100];
+    int first_matrix[100][100] = { 0 };
     // variables of second matrix
     int second_matrix_rows = 0;
     int second_matrix_columns = 0;
-    int second_matrix[100][100];
+    int second_matrix[100][100] = { 0 };
     // variables of result matrix
-    int result_matrix[100][100]={0};
+    int result_matrix_rows = 0;
+    int result_matrix_columns = 0;
+    int result_matrix[100][100] = { 0 };
 
     //first matrix input
     cout << "write the first matrix\n";
@@ -83,13 +86,13 @@ int main()
         cout << endl;
     }
     //chose the operation
-    cout << "1-plus\n2-minus\n3.multiblie\n4.division\n";
+    cout << "1-plus\n2-minus\n3.multiblie\n";
     cout << "\nchouse the number of operation you want:";
     cin >> operation;
     //plus
     if (operation == "1")
     {
-        if (first_matrix_rows!=second_matrix_rows || first_matrix_columns != second_matrix_columns)
+        if (first_matrix_rows != second_matrix_rows || first_matrix_columns != second_matrix_columns)
         {
             cout << "error!\nthose matris canot be added to gether\n";
             lock++;
@@ -116,31 +119,28 @@ int main()
     //multiblie
     if (operation == "3")
     {
-        int fir = 0;
-        int sec = 0;
-        for (int result_row = 0;result_row < first_matrix_rows;result_row++)
+        if (first_matrix_columns == second_matrix_rows)
         {
-            for (int result_column = 0;result_column < first_matrix_columns; result_column++) {
-               
-               result_matrix[result_row][result_column] += first_matrix[result_row][result_column]*first_matrix[result_column][result_row];
-            }
-        }
-         
+            for (int i = 0;i < first_matrix_rows; i++)
+            {
+                for (int result_row = 0;result_row < second_matrix_columns;result_row++)
+                {
+                    for (int result_column = 0;result_column < first_matrix_columns; result_column++) {
 
+                        result_matrix[i][result_row] += first_matrix[i][result_column] * second_matrix[result_column][result_row];
+                    }
+                }
+            }
+
+          //  first_matrix_rows=first_matrix_columns;
+            first_matrix_columns=second_matrix_columns;
+        }
+        else {
         
-
-    }
-    //division
-    if (operation == "4")
-    {
-        for (int result_row = 0;result_row < first_matrix_rows;result_row++)
-        {
-            for (int result_column = 0;result_column < first_matrix_columns; result_column++) {
-                result_matrix[result_row][result_column] = first_matrix[result_row][result_column] + second_matrix[result_row][result_column];
-            }
+            cout << "error!\ncan't multiply this matrix\n";
+            lock++;
         }
     }
-
     // print the result 
     if (lock == 0) {
         for (int i = 0;i < first_matrix_rows;i++)
@@ -151,9 +151,5 @@ int main()
             cout << endl;
         }
     }
-    //just to see the result 
-    cin>>woqmpd;
-    return 0;
-
-
+    system("pause");
 }
