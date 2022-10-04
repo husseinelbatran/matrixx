@@ -1,12 +1,13 @@
 #include<iostream>
-#include <cstdlib>
+#include<iomanip>
 
 using namespace std;
 int main()
 
 {
+    int bigger = 0;
     int lock = 0;
-    
+
     //operation variables
     string operation;
     // variables of first matrix
@@ -132,24 +133,37 @@ int main()
                 }
             }
 
-          //  first_matrix_rows=first_matrix_columns;
-            first_matrix_columns=second_matrix_columns;
+            //  first_matrix_rows=first_matrix_columns;
+            first_matrix_columns = second_matrix_columns;
         }
         else {
-        
+
             cout << "error!\ncan't multiply this matrix\n";
             lock++;
         }
     }
     // print the result 
     if (lock == 0) {
+
         for (int i = 0;i < first_matrix_rows;i++)
         {
             for (int t = 0;t < first_matrix_columns;t++) {
-                cout << " " << result_matrix[i][t] << " ";
+                if (result_matrix[i][t] > bigger)
+                    bigger = result_matrix[i][t];
             }
-            cout << endl;
+        }
+
+
+        for (int i = 0;i < first_matrix_rows;i++)
+        {
+            cout << " ";
+            for (int t = 0;t < first_matrix_columns;t++) {
+                cout<<result_matrix[i][t]<<" ";
+
+            }
+            cout <<endl;
         }
     }
-    system("pause");
+    return 0;
+
 }
